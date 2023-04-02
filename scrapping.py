@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 from webdriver_manager.chrome import ChromeDriverManager
 
 from exception import StreamingDataNotAvailableException
@@ -21,7 +23,9 @@ class ScrappingDriver:
             else:
                 self.first_visit = False
 
-            table_body = self.driver.find_element(By.CLASS_NAME, "latest-real-time-trades__table-body")
+            table_body = WebDriverWait(self.driver, 60).until(expected_conditions.presence_of_element_located((By.CLASS_NAME, "latest-real-time-trades__table-body")))
+
+            # table_body = self.driver.find_element(By.CLASS_NAME, "latest-real-time-trades__table-body")
 
             return table_body.find_elements(By.CLASS_NAME, "latest-real-time-trades__row")
 
