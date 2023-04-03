@@ -28,7 +28,7 @@ class ScrappingDriver:
             else:
                 self.first_visit = False
 
-            table_body = WebDriverWait(driver=self.driver, timeout=45, poll_frequency=1000).until(expected_conditions.presence_of_element_located((By.CLASS_NAME, "latest-real-time-trades__table-body")))
+            table_body = WebDriverWait(driver=self.driver, timeout=45, poll_frequency=1).until(expected_conditions.presence_of_element_located((By.CLASS_NAME, "latest-real-time-trades__table-body")))
 
             return table_body.find_elements(By.CLASS_NAME, "latest-real-time-trades__row")
 
