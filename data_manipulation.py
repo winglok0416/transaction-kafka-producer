@@ -4,6 +4,7 @@ import json
 
 
 def convert_rows_to_records(rows: [WebElement]):
+    print("Converting to records...\n")
     result = []
     for row in rows:
         elements = row.find_elements(By.CLASS_NAME, "latest-real-time-trades__cell")

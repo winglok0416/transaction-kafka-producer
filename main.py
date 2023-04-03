@@ -28,10 +28,8 @@ if __name__ == '__main__':
             else:
                 print("Start scrapping data from NASDAQ...\n")
                 driver = ScrappingDriver()
-                rows = driver.scrap_data()
+                records = driver.scrap_data()
                 driver.close()
-                print("Converting to records...\n")
-                records = convert_rows_to_records(rows)
                 print("Saving to text file...")
                 save_data_to_txt(records)
 

@@ -7,6 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from webdriver_manager.chrome import ChromeDriverManager
 
+from data_manipulation import convert_rows_to_records
 from exception import StreamingDataNotAvailableException
 
 
@@ -30,7 +31,7 @@ class ScrappingDriver:
 
             table_body = WebDriverWait(driver=self.driver, timeout=45, poll_frequency=1).until(expected_conditions.presence_of_element_located((By.CLASS_NAME, "latest-real-time-trades__table-body")))
 
-            return table_body.find_elements(By.CLASS_NAME, "latest-real-time-trades__row")
+            return convert_rows_to_records(table_body.find_elements(By.CLASS_NAME, "latest-real-time-trades__row"))
 
         except NoSuchElementException:
             raise StreamingDataNotAvailableException
