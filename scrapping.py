@@ -25,8 +25,6 @@ class ScrappingDriver:
 
             table_body = WebDriverWait(self.driver, 60).until(expected_conditions.presence_of_element_located((By.CLASS_NAME, "latest-real-time-trades__table-body")))
 
-            # table_body = self.driver.find_element(By.CLASS_NAME, "latest-real-time-trades__table-body")
-
             return table_body.find_elements(By.CLASS_NAME, "latest-real-time-trades__row")
 
         except NoSuchElementException:

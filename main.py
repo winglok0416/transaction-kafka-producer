@@ -21,16 +21,15 @@ if __name__ == '__main__':
         mock_flag = False
 
     try:
-        if mock_flag is False:
-            driver = ScrappingDriver()
-
         while True:
             if mock_flag is True:
                 print("Use mock data...\n")
                 records = mock_records
             else:
                 print("Start scrapping data from NASDAQ...\n")
+                driver = ScrappingDriver()
                 rows = driver.scrap_data()
+                driver.close()
                 print("Converting to records...\n")
                 records = convert_rows_to_records(rows)
                 print("Saving to text file...")
